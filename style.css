@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+
+/* Global Styles */
+* {
+  font-family: "Poppins", monospace;
+  text-align: center;
+  color: #222222;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hidden {
+  position: absolute;
+  top: -1000px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overscroll-behavior: none;
+  min-height: 100vh;
+}
+
+main.container-cards {
+  width: 100%;
+  height: auto;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
+.container-cards .new-card {
+  border: solid 1px rgb(207, 207, 207);
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+}
+.container-cards .new-card:hover {
+  box-shadow: 2px 2px 10px rgb(207, 207, 207), -2px -2px 10px rgb(207, 207, 207);
+}
+
+.new-card h1,
+.new-card h2,
+.new-card h3,
+.new-card h4,
+.new-card span,
+.new-card i,
+.new-card p {
+  text-align: left;
+}
+.new-card .image-container {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+.new-card .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.new-card .info-container {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.new-card .info-container h2 {
+  font-size: 1rem;
+}
+.new-card .info-container p {
+  font-size: 0.9rem;
+}
+.new-card .info-container span {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+.new-card .info-container i {
+  margin-bottom: 0.5rem;
+}
+
+.new-card .call-to-action button {
+  border: none;
+  background: dodgerblue;
+  padding: 0.5rem 0.7rem;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.new-card .call-to-action button:hover {
+  box-shadow: 2px 2px 4px rgb(207, 207, 207), -2px -2px 4px rgb(207, 207, 207);
+}
+
+/* Mobile layout */
+@media (max-width: 6 00px) {
+  main.container.cards {
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  }
+}
