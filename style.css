@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+@import url("./noise.css");
 
 /* Global Styles */
 * {
@@ -128,6 +129,10 @@ main.container-cards {
   overflow-y: scroll;
 }
 
+.modal-bg .modal-card.no-scroll {
+  overflow-y: hidden;
+}
+
 .modal-card h2,
 .modal-card p,
 .modal-card i {
@@ -157,9 +162,9 @@ main.container-cards {
 }
 
 .modal-card span.modal-close {
-  position: absolute;
-  top: 0rem;
-  right: 0.5rem;
+  position: fixed;
+  top: 10%;
+  right: 12%;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -172,15 +177,32 @@ main.container-cards {
 
 div.pixel {
   position: fixed;
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   background-color: #222222;
   z-index: 10;
 }
 
 /* Mobile layout */
-@media (max-width: 6 00px) {
+@media (max-width: 600px) {
   main.container.cards {
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  }
+
+  .modal-card .modal-header {
+    flex-direction: column;
+  }
+  .modal-header .modal-image,
+  .modal-header .modal-title {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  div.pixel {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    background-color: #222222;
+    z-index: 10;
   }
 }

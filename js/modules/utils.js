@@ -48,7 +48,7 @@ export const Modal = (article) => {
             <div class="modal-header">
 
                 <div class="modal-image">
-                    <img src="${article.urlToImage}" />
+                    <img src="${article.media}" />
                 </div>
 
                 <div class="modal-title">
@@ -61,19 +61,19 @@ export const Modal = (article) => {
 
                 <div class="info-details">
                     <p>
-                      <span>${article.source.name}</span>
+                      <span>${article.clean_url}</span>
                     </p>
                     <p>
-                      <span>${getDate(article.publishedAt)[0]} 
+                      <span> 
                         <small>
-                          ${getDate(article.publishedAt)[1]}
+                          ${article.published_date}
                         </small>
                       </span>
                     </p>
                 </div>
 
                 <div class="modal-content">
-                    <p class="modal-description">${article.contentFake}</p>
+                    <p class="modal-description">${article.summary}</p>
                 </div>
                 
             </div>
@@ -129,7 +129,7 @@ export const CardNew = (article) => {
                       </div>
 
                       <div class="call-to-action">
-                          <button class="button-more" data-id="${article.id}">
+                          <button class="button-more" data-id="${article._id}">
                             Ver más
                           </button>
                       </div>

@@ -1,0 +1,101 @@
+div.canva-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 10;
+  overflow: hidden;
+}
+div.canva-pixel {
+  width: 3px;
+  height: 3px;
+}
+
+div.canva-pixel.type1 {
+  animation: changeColor2 0.2s linear infinite;
+}
+div.canva-pixel.type2 {
+  animation: changeColor3 0.02s linear infinite;
+}
+div.canva-pixel.type3 {
+  animation: changeColor4 0.03s linear infinite;
+}
+div.canva-pixel.type4 {
+  animation: changeColor1 0.1s linear infinite;
+}
+div.canva-pixel.type5 {
+  animation: changeColor2 0.07s linear infinite;
+}
+div.canva-pixel.type6 {
+  animation: changeColor5 0.06s linear infinite;
+}
+div.canva-pixel.type7 {
+  animation: changeColor2 0.09s linear infinite;
+}
+div.canva-pixel.type8 {
+  animation: changeColor3 0.2s linear infinite;
+}
+
+@keyframes changeColor1 {
+  0% {
+    background-color: #929292;
+  }
+  50% {
+    background-color: #838282;
+  }
+  100% {
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@keyframes changeColor2 {
+  0% {
+    background-color: #aaaaaa;
+  }
+  50% {
+    background-color: #585858;
+  }
+  100% {
+    background-color: rgb(182, 182, 182);
+  }
+}
+
+@keyframes changeColor3 {
+  0% {
+    background-color: #5f5f5f;
+  }
+  50% {
+    background-color: #222222;
+  }
+  100% {
+    background-color: rgb(12, 12, 12);
+  }
+}
+
+@keyframes changeColor4 {
+  0% {
+    background-color: #424242;
+  }
+  50% {
+    background-color: #e9e9e9;
+  }
+  100% {
+    background-color: rgb(49, 48, 48);
+  }
+}
+
+@keyframes changeColor5 {
+  0% {
+    background-color: #8a8a8a;
+  }
+  50% {
+    background-color: #525050;
+  }
+  100% {
+    background-color: rgb(70, 69, 69);
+  }
+}

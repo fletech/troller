@@ -1,11 +1,12 @@
-import { Modal, getDate, CardNew, setRandomInterval } from "./utils.js";
-import { createNewPixel } from "./newPixel.js";
+import { Modal, getDate, CardNew, setRandomInterval } from "./modules/utils.js";
+import { createNewPixel } from "./modules/newPixel.js";
 
-import { fetchToApi } from "./fetchToApi.js";
+import { fetchToApi } from "./modules/fetchToApi.js";
+import { noise } from "./modules/noise.js";
 
 let minutesToGetNewData = 30;
 let minSecondsDelayToNewPixel = 0.1;
-let maxSecondsDelayToNewPixel = 1.5;
+let maxSecondsDelayToNewPixel = 0.5;
 
 window.addEventListener("load", () => {
   const body = document.querySelector("body");
@@ -22,8 +23,12 @@ window.addEventListener("load", () => {
 
   /// Close with escape
   document.addEventListener("keydown", (e) => {
-    e.key === "Escape" && modalBG.classList.remove("turned-on");
-    fetchToApi(containerCards, setCardNew);
+    if (e.key === "Escape") {
+      modalBG.classList.remove("turned-on");
+      fetchToApi(containerCards, setCardNew);
+    } else {
+      null;
+    }
   });
 
   /// Close clicking at X
@@ -47,7 +52,10 @@ window.addEventListener("load", () => {
     data.forEach((article) => {
       if (article.description === null) return null;
       if (article.urlToImage === null) return null;
-      if (article.media === null) return null;
+      if (article.media === null) {
+        console.log(article.media);
+        return null;
+      }
 
       containerCards.innerHTML += CardNew(article);
 
@@ -69,13 +77,16 @@ window.addEventListener("load", () => {
 
   const turnOnModal = (modal, id, data) => {
     data.filter((article) => {
-      article.id == id ? (modal.innerHTML = Modal(article, getDate)) : null;
+      article._id == id ? (modal.innerHTML = Modal(article, getDate)) : null;
     });
 
     const buttonClose = document.querySelector(".modal-close");
+    const modalCard = document.querySelector(".modal-card");
     turnOffModalButton(buttonClose, modalBG);
     setModalState(true);
-    console.log(modalState);
+    setTimeout(() => {
+      noise(modalState, modalCard);
+    }, 2000);
   };
 
   ////////////////

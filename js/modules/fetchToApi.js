@@ -50,7 +50,7 @@ const NEWS_API_KEY = "2919bdc1948a459c9b99296ef5c965d8";
 export const fetchToApi = async (containerCards, setCardNew) => {
   try {
     const response = await fetch(
-      "https://free-news.p.rapidapi.com/v1/search?q=argentina&lang=es&country=ar",
+      "https://free-news.p.rapidapi.com/v1/search?q=argentina&lang=es&search_in=summary&page_size=100",
       {
         method: "GET",
         headers: {
@@ -60,20 +60,10 @@ export const fetchToApi = async (containerCards, setCardNew) => {
       }
     );
     const data = await response.json();
-    console.log(data);
-    let dataModified = [];
-
-    data.articles.forEach((article, i) => {
-      article = {
-        ...article,
-        id: i + 1,
-      };
-      dataModified.push(article);
-    });
 
     containerCards.innerHTML = "";
-    setCardNew(dataModified);
-    console.log("fetched");
+    setCardNew(data.articles);
+    console.log(data.articles);
     //
   } catch (error) {
     console.error("Error:", error);
