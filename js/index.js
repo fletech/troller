@@ -1,64 +1,55 @@
+import { Modal, getDate, CardNew, setRandomInterval } from "./utils.js";
+import { createNewPixel } from "./newPixel.js";
+
+import { fetchToApi } from "./fetchToApi.js";
+
+let minutesToGetNewData = 30;
+let minSecondsDelayToNewPixel = 0.1;
+let maxSecondsDelayToNewPixel = 1.5;
+
 window.addEventListener("load", () => {
-  const API_KEY = "2919bdc1948a459c9b99296ef5c965d8";
+  const body = document.querySelector("body");
   const containerCards = document.querySelector(".container-cards");
   const modalBG = document.querySelector(".modal-bg");
 
-  /////////Functions
-
-  ///
-  const fetchToApi = async () => {
-    try {
-      const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?category=general&country=ar&apiKey=${API_KEY}`
-      );
-      const data = await response.json();
-      console.log(data);
-
-      let dataModified = [];
-
-      data.articles.forEach((article, i) => {
-        article = {
-          ...article,
-          id: i + 1,
-          title: `${article.title.substr(0, article.title.indexOf("-", 0))}`,
-        };
-        dataModified.push(article);
-      });
-      setCardNew(dataModified);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+  // STATES //
+  let modalState = false;
+  const setModalState = (boolean) => {
+    modalState = boolean;
   };
 
-  fetchToApi();
+  // LISTENERS //
 
-  ///
+  /// Close with escape
+  document.addEventListener("keydown", (e) => {
+    e.key === "Escape" && modalBG.classList.remove("turned-on");
+    fetchToApi(containerCards, setCardNew);
+  });
+
+  /// Close clicking at X
+  const turnOffModalButton = (button, modal) => {
+    button.addEventListener("click", () => {
+      fetchToApi(containerCards, setCardNew);
+      modal.classList.remove("turned-on");
+      setModalState(false);
+    });
+  };
+
+  body.addEventListener("scroll", () => {
+    secondsToCreateNewPixel = 0.01;
+  });
+  // FUNCTIONS //
+
+  ////////////////////////////////////
+  //  TURN DATA FETCHED INTO CARDS  //
+  ////////////////////////////////////
   const setCardNew = (data) => {
     data.forEach((article) => {
       if (article.description === null) return null;
       if (article.urlToImage === null) return null;
+      if (article.media === null) return null;
 
-      containerCards.innerHTML += `
-                  <article class="new-card">
-
-                      <div class="image-container">
-                          <img src="${article.urlToImage}"/>
-                      </div>
-
-                      <div class="info-container">
-                          <h2>${article.title}</h2>
-                          <i>
-                              <span>${article.source.name}</span>
-                          </i>
-                      </div>
-
-                      <div class="call-to-action">
-                          <button class="button-more" data-id="${article.id}">
-                            Ver más
-                          </button>
-                      </div>
-
-                  </article>`;
+      containerCards.innerHTML += CardNew(article);
 
       const buttonMore = document.querySelectorAll(".button-more");
 
@@ -72,107 +63,37 @@ window.addEventListener("load", () => {
     });
   };
 
+  /////////////////////////
+  //  Create MODAL VIEW  //
+  /////////////////////////
+
   const turnOnModal = (modal, id, data) => {
-    data.filter((article) =>
-      article.id == id
-        ? (modal.innerHTML = `
-        <div class="modal-card">
-            <div class="modal-header">
+    data.filter((article) => {
+      article.id == id ? (modal.innerHTML = Modal(article, getDate)) : null;
+    });
 
-                <div class="image-modal">
-                    <img src="${article.urlToImage}" />
-                </div>
-
-                <div class="modal-title">
-                    <h2>${article.title}</h2>
-                </div>
-
-            </div>
-
-            <div class="info-container">
-
-                <div class="info-details">
-                    <p>
-                      <span>${article.source.name}</span>
-                    </p>
-                    <p>
-                      <span>${getDate(article.publishedAt)[0]} 
-                        <small>
-                          ${getDate(article.publishedAt)[1]}
-                        </small>
-                      </span>
-                    </p>
-                </div>
-
-                <div>
-                  <i>
-                    <span>${article.description}</span>
-                  </i>
-                </div>
-                
-            </div>
-
-            <span class="modal-close"><i class="fas fa-times-circle"></i></span>
-
-      </div>`)
-        : null
-    );
     const buttonClose = document.querySelector(".modal-close");
     turnOffModalButton(buttonClose, modalBG);
+    setModalState(true);
+    console.log(modalState);
   };
 
-  const turnOffModalButton = (button, modal) => {
-    button.addEventListener("click", () => {
-      modal.classList.remove("turned-on");
-    });
-  };
+  ////////////////
+  //Interactions//
+  ////////////////
+  setTimeout(() => {
+    setRandomInterval(
+      () => createNewPixel(body),
+      minSecondsDelayToNewPixel * 1000,
+      maxSecondsDelayToNewPixel * 1000
+    );
+  }, 5000);
 
-  const getDate = (date) => {
-    let dateTime = new Date(date);
-
-    const getCurrentMonth = () => {
-      const month = dateTime.getMonth() + 1;
-      if (month < 10) {
-        return `0${month}`;
-      } else {
-        return month;
-      }
-    };
-
-    const getCurrentDay = () => {
-      const day = dateTime.getDate();
-      if (day < 10) {
-        return `0${day}`;
-      } else {
-        return day;
-      }
-    };
-
-    const formatTime = (cb) => {
-      let time = cb;
-      let time_format = time < 10 ? `0${time}` : time;
-      return time_format;
-    };
-
-    let date_formatted =
-      dateTime.getFullYear() +
-      "-" +
-      getCurrentMonth() +
-      "-" +
-      getCurrentDay() +
-      " ";
-    let time_formatted =
-      formatTime(dateTime.getHours()) +
-      ":" +
-      formatTime(dateTime.getMinutes()) +
-      ":" +
-      formatTime(dateTime.getSeconds());
-
-    return [date_formatted, time_formatted];
-  };
-
-  /////// LISTENERS ///////
-  document.addEventListener("keydown", (e) => {
-    e.key === "Escape" && modalBG.classList.remove("turned-on");
-  });
+  /////////////////
+  // CALL TO API //
+  /////////////////
+  fetchToApi(containerCards, setCardNew);
+  setInterval((state = modalState) => {
+    !state ? fetchToApi(containerCards, setCardNew) : null;
+  }, minutesToGetNewData * 1000 * 60);
 });
