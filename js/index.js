@@ -25,7 +25,9 @@ window.addEventListener("load", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       modalBG.classList.remove("turned-on");
+      setModalState(false);
       fetchToApi(containerCards, setCardNew);
+      noise(modalState);
     } else {
       null;
     }

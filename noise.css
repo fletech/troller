@@ -4,15 +4,16 @@ div.canva-noise {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #222222;
+  background: url(./assets/Ruido.png);
+  animation: animate 0.3s steps(7) infinite;
   display: flex;
   flex-wrap: wrap;
   z-index: 10;
   overflow: hidden;
 }
 div.canva-pixel {
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
 }
 
 div.canva-pixel.type1 {
@@ -38,6 +39,16 @@ div.canva-pixel.type7 {
 }
 div.canva-pixel.type8 {
   animation: changeColor3 0.2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 @keyframes changeColor1 {

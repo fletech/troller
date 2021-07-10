@@ -127,6 +127,7 @@ main.container-cards {
   position: relative;
   z-index: 20;
   overflow-y: scroll;
+  box-shadow: 4px 4px 10px rgb(121, 120, 120), -4px -4px 10px rgb(121, 120, 120);
 }
 
 .modal-bg .modal-card.no-scroll {
@@ -167,6 +168,7 @@ main.container-cards {
   right: 12%;
   font-size: 2rem;
   cursor: pointer;
+  z-index: 100;
 }
 
 .modal-card span i {
