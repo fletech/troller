@@ -20,8 +20,6 @@ canvaPixel.classList.add("canva-pixel");
 
 export const noise = (state, modal) => {
   if (state) {
-    console.log(modal.offsetWidth);
-    console.log(modal.offsetHeight);
     //canvaNoise.innerHTML = DivBox(modal.offsetHeight, modal.offsetWidth);
     modal.appendChild(canvaNoise);
     modal.classList.add("no-scroll");

@@ -47,10 +47,12 @@ const NEWS_API_KEY = "2919bdc1948a459c9b99296ef5c965d8";
 //   }
 // };
 
-export const fetchToApi = async (containerCards, setCardNew) => {
+const containerCards = document.querySelector(".container-cards");
+
+export const fetchToApi = async (setCardNew) => {
   try {
     const response = await fetch(
-      "https://free-news.p.rapidapi.com/v1/search?q=argentina&lang=es&search_in=summary&page_size=100",
+      "https://free-news.p.rapidapi.com/v1/search?q=si&country=ar&lang=es&topic=politics&search_in=summary&page_size=100",
       {
         method: "GET",
         headers: {

@@ -187,8 +187,16 @@ div.pixel {
 
 /* Mobile layout */
 @media (max-width: 600px) {
-  main.container.cards {
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  body {
+    font-size: 60% !important;
+  }
+  main.container-cards {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  main.container-cards .new-card {
+    width: 100%;
+    height: auto;
   }
 
   .modal-card .modal-header {

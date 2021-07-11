@@ -1,32 +1,33 @@
-import { Modal, getDate, CardNew, setRandomInterval } from "./modules/utils.js";
-import { createNewPixel } from "./modules/newPixel.js";
-
 import { fetchToApi } from "./modules/fetchToApi.js";
+
+import { Card } from "./modules/Card.js";
+import { Modal } from "./modules/Modal.js";
+
+import { createNewPixel } from "./modules/newPixel.js";
 import { noise } from "./modules/noise.js";
+import { getDate, setRandomInterval } from "./modules/utils.js";
 
 let minutesToGetNewData = 30;
 let minSecondsDelayToNewPixel = 0.1;
-let maxSecondsDelayToNewPixel = 0.5;
+let maxSecondsDelayToNewPixel = 1;
 
 window.addEventListener("load", () => {
+  ////////////////////////////////////
+  ////////////  ELEMENTS  ////////////
+  ////////////////////////////////////
   const body = document.querySelector("body");
-  const containerCards = document.querySelector(".container-cards");
   const modalBG = document.querySelector(".modal-bg");
 
-  // STATES //
-  let modalState = false;
-  const setModalState = (boolean) => {
-    modalState = boolean;
-  };
-
-  // LISTENERS //
+  ////////////////////////////////////
+  ///////////   LISTENERS   //////////
+  ////////////////////////////////////
 
   /// Close with escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       modalBG.classList.remove("turned-on");
       setModalState(false);
-      fetchToApi(containerCards, setCardNew);
+      fetchToApi(setCardNew);
       noise(modalState);
     } else {
       null;
@@ -36,20 +37,30 @@ window.addEventListener("load", () => {
   /// Close clicking at X
   const turnOffModalButton = (button, modal) => {
     button.addEventListener("click", () => {
-      fetchToApi(containerCards, setCardNew);
+      fetchToApi(setCardNew);
       modal.classList.remove("turned-on");
       setModalState(false);
     });
   };
 
+  /// SCROLL !
   body.addEventListener("scroll", () => {
-    secondsToCreateNewPixel = 0.01;
+    console.log("scrolled!");
   });
-  // FUNCTIONS //
 
   ////////////////////////////////////
-  //  TURN DATA FETCHED INTO CARDS  //
+  /////////////  STATES  /////////////
   ////////////////////////////////////
+  let modalState = false;
+  const setModalState = (boolean) => {
+    modalState = boolean;
+  };
+
+  ////////////////////////////////////
+  ///////////   FUNCTIONS   //////////
+  ////////////////////////////////////
+
+  //  TURN DATA FETCHED INTO CARDS  //
   const setCardNew = (data) => {
     data.forEach((article) => {
       if (article.description === null) return null;
@@ -58,9 +69,8 @@ window.addEventListener("load", () => {
         console.log(article.media);
         return null;
       }
-
-      containerCards.innerHTML += CardNew(article);
-
+      const containerCards = document.querySelector(".container-cards");
+      containerCards.innerHTML += Card(article);
       const buttonMore = document.querySelectorAll(".button-more");
 
       buttonMore.forEach((button) => {
@@ -73,9 +83,7 @@ window.addEventListener("load", () => {
     });
   };
 
-  /////////////////////////
   //  Create MODAL VIEW  //
-  /////////////////////////
 
   const turnOnModal = (modal, id, data) => {
     data.filter((article) => {
@@ -91,9 +99,9 @@ window.addEventListener("load", () => {
     }, 2000);
   };
 
-  ////////////////
-  //Interactions//
-  ////////////////
+  ////////////////////
+  //  INTERACTIONS  //
+  ////////////////////
   setTimeout(() => {
     setRandomInterval(
       () => createNewPixel(body),
@@ -105,8 +113,8 @@ window.addEventListener("load", () => {
   /////////////////
   // CALL TO API //
   /////////////////
-  fetchToApi(containerCards, setCardNew);
+  fetchToApi(setCardNew);
   setInterval((state = modalState) => {
-    !state ? fetchToApi(containerCards, setCardNew) : null;
+    !state ? fetchToApi(setCardNew) : null;
   }, minutesToGetNewData * 1000 * 60);
 });
