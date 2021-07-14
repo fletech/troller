@@ -1,11 +1,13 @@
+import { Card } from "./modules/Components/Card.js";
+import { Modal } from "./modules/Components/Modal.js";
+
 import { fetchToApi } from "./modules/fetchToApi.js";
-
-import { Card } from "./modules/Card.js";
-import { Modal } from "./modules/Modal.js";
-
-import { createNewPixel } from "./modules/newPixel.js";
-import { noise } from "./modules/noise.js";
+import { fetchToTwitter } from "./modules/fetchToTwitter.js";
+import { fetchYouTube } from "./modules/fetchYouTube.js";
 import { getDate, setRandomInterval } from "./modules/utils.js";
+import { interaction_noise } from "./modules/interaction_noise.js";
+import { interaction_pixel } from "./modules/interaction_pixel.js";
+import { interaction_youtube } from "./modules/interaction_youtube.js";
 
 let minutesToGetNewData = 30;
 let minSecondsDelayToNewPixel = 0.1;
@@ -28,7 +30,8 @@ window.addEventListener("load", () => {
       modalBG.classList.remove("turned-on");
       setModalState(false);
       fetchToApi(setCardNew);
-      noise(modalState);
+      interaction_youtube(modalState);
+      //interaction_noise(modalState, null);
     } else {
       null;
     }
@@ -40,6 +43,7 @@ window.addEventListener("load", () => {
       fetchToApi(setCardNew);
       modal.classList.remove("turned-on");
       setModalState(false);
+      interaction_youtube(modalState);
     });
   };
 
@@ -86,34 +90,60 @@ window.addEventListener("load", () => {
   //  Create MODAL VIEW  //
 
   const turnOnModal = (modal, id, data) => {
+    let title;
     data.filter((article) => {
-      article._id == id ? (modal.innerHTML = Modal(article, getDate)) : null;
+      if (article._id == id) {
+        modal.innerHTML = Modal(article, getDate);
+        title = article.title;
+      }
     });
 
     const buttonClose = document.querySelector(".modal-close");
     const modalCard = document.querySelector(".modal-card");
     turnOffModalButton(buttonClose, modalBG);
     setModalState(true);
+
+    let interactionTrigger = Math.floor(Math.random() * 10);
+    let youTubeResults;
+    if (interactionTrigger % 2 === 0) {
+      fetchYouTube(title).then((items) => (youTubeResults = items));
+    }
     setTimeout(() => {
-      noise(modalState, modalCard);
+      switch (interactionTrigger % 2) {
+        case 0:
+          interaction_youtube(modalState, youTubeResults);
+          break;
+        case 1:
+          interaction_noise(modalState, modalCard);
+          break;
+        default:
+          console.log("ni 2 ni 3");
+          break;
+      }
+      //interaction_youtube(modalState, youTubeResults);
+      //interaction_noise(modalState, modalCard);
     }, 2000);
   };
 
-  ////////////////////
-  //  INTERACTIONS  //
-  ////////////////////
+  //////////////////////////////////
+  //      INTERACTION PIXELS      //
+  //////////////////////////////////
   setTimeout(() => {
     setRandomInterval(
-      () => createNewPixel(body),
+      () => interaction_pixel(body),
       minSecondsDelayToNewPixel * 1000,
       maxSecondsDelayToNewPixel * 1000
     );
   }, 5000);
 
-  /////////////////
-  // CALL TO API //
-  /////////////////
+  /////////////////////////////////
+  //         CALL TO API         //
+  /////////////////////////////////
+
+  //fetchToTwitter("messi");
+
   fetchToApi(setCardNew);
+
   setInterval((state = modalState) => {
     !state ? fetchToApi(setCardNew) : null;
   }, minutesToGetNewData * 1000 * 60);

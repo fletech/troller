@@ -1,0 +1,47 @@
+#iframe-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 100;
+  width: 50%;
+  height: 50%;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  #iframe-container {
+    width: 80%;
+  }
+}
+#iframe-container .iframe-layout {
+  position: relative;
+  display: none;
+  pointer-events: none;
+}
+#iframe-container .iframe-close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 200;
+}
+#iframe-container .iframe-layout .iframe-close i {
+  color: tomato !important;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+}
+
+#ytplayer {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.element-visible {
+  transition: display 2s linear;
+  display: inline-block !important;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+}

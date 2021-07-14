@@ -65,7 +65,7 @@ export const fetchToApi = async (setCardNew) => {
 
     containerCards.innerHTML = "";
     setCardNew(data.articles);
-    console.log(data.articles);
+    //console.log(data.articles);
     //
   } catch (error) {
     console.error("Error:", error);
