@@ -1,0 +1,21 @@
+div.pixels-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+div.pixel {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background-color: #222222;
+  z-index: 10;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  div.pixel {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}

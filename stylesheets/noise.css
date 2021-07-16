@@ -16,13 +16,13 @@ div.canva-noise {
   opacity: 0.95;
 }
 div.canva-noise.px-1 {
-  background: url(../assets/Ruido-1px.png);
+  background: url(../assets/images/Ruido-1px.png);
 }
 div.canva-noise.px-1-shadow {
-  background: url(../assets/Ruido-1px-shadow.png);
+  background: url(../assets/images/Ruido-1px-shadow.png);
 }
 div.canva-noise.px-2 {
-  background: url(../assets/Ruido-2px.png);
+  background: url(../assets/images/Ruido-2px.png);
 }
 
 @keyframes infiniteLoop {
@@ -45,7 +45,7 @@ div.canva-noise.px-2 {
   }
 
   10% {
-    opacity: 0.7;
+    opacity: 0.95;
   }
 
   20% {
@@ -57,19 +57,24 @@ div.canva-noise.px-2 {
   }
 
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   66% {
     opacity: 0.9;
   }
-
+  75% {
+    opacity: 0.1;
+  }
   80% {
     opacity: 0.4;
   }
+  82% {
+    opacity: 0;
+  }
 
   100% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 

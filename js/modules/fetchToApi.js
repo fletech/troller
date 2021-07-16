@@ -1,5 +1,31 @@
 const API_KEY = "ca28fa1f33mshf43f0697b2b1d0dp1bde54jsn783b759ef4fc";
 const NEWS_API_KEY = "2919bdc1948a459c9b99296ef5c965d8";
+
+const containerCards = document.querySelector(".container-cards");
+
+export const fetchToApi = async (setCardNew) => {
+  try {
+    const response = await fetch(
+      "https://free-news.p.rapidapi.com/v1/search?q=si&country=ar&lang=es&topic=politics&search_in=summary&page_size=100",
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key": API_KEY,
+          "x-rapidapi-host": "free-news.p.rapidapi.com",
+        },
+      }
+    );
+    const data = await response.json();
+
+    containerCards.innerHTML = "";
+    setCardNew(data.articles);
+    //console.log(data.articles);
+    //
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 // export const fetchToApi = async (
 //   country,
 //   category,
@@ -46,28 +72,3 @@ const NEWS_API_KEY = "2919bdc1948a459c9b99296ef5c965d8";
 //     console.error("Error:", error);
 //   }
 // };
-
-const containerCards = document.querySelector(".container-cards");
-
-export const fetchToApi = async (setCardNew) => {
-  try {
-    const response = await fetch(
-      "https://free-news.p.rapidapi.com/v1/search?q=si&country=ar&lang=es&topic=politics&search_in=summary&page_size=100",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": API_KEY,
-          "x-rapidapi-host": "free-news.p.rapidapi.com",
-        },
-      }
-    );
-    const data = await response.json();
-
-    containerCards.innerHTML = "";
-    setCardNew(data.articles);
-    //console.log(data.articles);
-    //
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};

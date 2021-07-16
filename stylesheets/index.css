@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+@import url("./card.css");
+@import url("./modal.css");
+@import url("./noise.css");
+@import url("./pixels.css");
+@import url("./youTubePlayer.css");
+
+/* Global Styles */
+* {
+  font-family: "Poppins", monospace;
+  text-align: center;
+  color: #222222;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overscroll-behavior: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main.container-cards {
+  width: 100%;
+  height: auto;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  body {
+    font-size: 75% !important;
+  }
+  main.container-cards {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  div.pixel {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    background-color: #222222;
+    z-index: 10;
+  }
+}

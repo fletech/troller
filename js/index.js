@@ -14,17 +14,14 @@ let minSecondsDelayToNewPixel = 0.1;
 let maxSecondsDelayToNewPixel = 1;
 
 window.addEventListener("load", () => {
-  ////////////////////////////////////
   ////////////  ELEMENTS  ////////////
-  ////////////////////////////////////
   const body = document.querySelector("body");
   const modalBG = document.querySelector(".modal-bg");
+  //-------------------------------------------
+  //--------------------------------------------------------
 
-  ////////////////////////////////////
   ///////////   LISTENERS   //////////
-  ////////////////////////////////////
-
-  /// Close with escape
+  // Close with escape //
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       modalBG.classList.remove("turned-on");
@@ -36,8 +33,8 @@ window.addEventListener("load", () => {
       null;
     }
   });
-
-  /// Close clicking at X
+  //-------------------------------------------
+  // Close clicking at X //
   const turnOffModalButton = (button, modal) => {
     button.addEventListener("click", () => {
       fetchToApi(setCardNew);
@@ -46,23 +43,24 @@ window.addEventListener("load", () => {
       interaction_youtube(modalState);
     });
   };
+  //-------------------------------------------
 
   /// SCROLL !
   body.addEventListener("scroll", () => {
     console.log("scrolled!");
   });
+  //-------------------------------------------
+  //--------------------------------------------------------
 
-  ////////////////////////////////////
   /////////////  STATES  /////////////
-  ////////////////////////////////////
   let modalState = false;
   const setModalState = (boolean) => {
     modalState = boolean;
   };
+  //-------------------------------------------
+  //--------------------------------------------------------
 
-  ////////////////////////////////////
   ///////////   FUNCTIONS   //////////
-  ////////////////////////////////////
 
   //  TURN DATA FETCHED INTO CARDS  //
   const setCardNew = (data) => {
@@ -86,9 +84,9 @@ window.addEventListener("load", () => {
       });
     });
   };
+  //-------------------------------------------
 
-  //  Create MODAL VIEW  //
-
+  //  MODAL VIEW  //
   const turnOnModal = (modal, id, data) => {
     let title;
     data.filter((article) => {
@@ -124,21 +122,22 @@ window.addEventListener("load", () => {
       //interaction_noise(modalState, modalCard);
     }, 2000);
   };
+  //-------------------------------------------
+  //--------------------------------------------------------
 
-  //////////////////////////////////
-  //      INTERACTION PIXELS      //
-  //////////////////////////////////
+  //  INTERACTION PIXELS  //
+
   setTimeout(() => {
     setRandomInterval(
-      () => interaction_pixel(body),
+      () => interaction_pixel(),
       minSecondsDelayToNewPixel * 1000,
       maxSecondsDelayToNewPixel * 1000
     );
   }, 5000);
+  //-------------------------------------------
+  //--------------------------------------------------------
 
-  /////////////////////////////////
-  //         CALL TO API         //
-  /////////////////////////////////
+  /////////////  CALL TO API  /////////////
 
   //fetchToTwitter("messi");
 
@@ -147,4 +146,6 @@ window.addEventListener("load", () => {
   setInterval((state = modalState) => {
     !state ? fetchToApi(setCardNew) : null;
   }, minutesToGetNewData * 1000 * 60);
+  //-------------------------------------------
+  //--------------------------------------------------------
 });

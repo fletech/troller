@@ -1,0 +1,118 @@
+/*   MODAL   */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-content: center;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s ease-in-out;
+}
+.modal-bg.turned-on {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+.modal-bg .modal-card {
+  width: 80vw;
+  height: 80vh;
+  background-color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+  overflow-y: hidden;
+  box-shadow: 4px 4px 10px rgb(121, 120, 120), -4px -4px 10px rgb(121, 120, 120);
+}
+
+.modal-bg .modal-card.no-scroll {
+  overflow-y: hidden;
+}
+
+.modal-card h2,
+.modal-card p,
+.modal-card i {
+  text-align: left !important;
+
+  margin: 1rem 0;
+}
+.modal-card .modal-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.modal-header .modal-image,
+.modal-header .modal-title {
+  width: 49%;
+  height: 100%;
+  overflow: hidden;
+}
+.modal-header .modal-title {
+  padding: 1rem;
+}
+.modal-header .modal-image {
+  flex-grow: 2;
+}
+
+.modal-header .modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-card .modal-close-container {
+  position: fixed;
+  top: 12%;
+  right: 12%;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 100;
+  height: 2rem;
+  border-radius: 2rem;
+}
+
+.modal-card i {
+  margin: 0;
+  font-size: 2rem;
+  top: 0;
+  left: 0;
+  color: dodgerblue;
+  cursor: pointer;
+  pointer-events: all;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  .modal-bg .modal-card {
+    height: 70vh;
+  }
+  .modal-card .modal-header {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .modal-header .modal-image,
+  .modal-header .modal-title {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .modal-header .modal-image {
+    height: 60%;
+  }
+  .modal-header .modal-title {
+    height: auto;
+  }
+
+  .modal-card .modal-close-container {
+    top: 16%;
+  }
+}
