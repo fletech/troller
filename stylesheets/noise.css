@@ -78,10 +78,11 @@ div.canva-noise.px-2 {
   }
 }
 
-/* --------------*/
-/* Render Pixels */
-/* --------------*/
-div.canva-pixel {
+/* ------------------------------*/
+/*         Render Pixels         */
+/* ------------------------------*/
+
+/* div.canva-pixel {
   width: 1px;
   height: 1px;
 }
@@ -175,4 +176,4 @@ div.canva-pixel.type10 {
   100% {
     background-color: rgb(70, 69, 69);
   }
-}
+} */

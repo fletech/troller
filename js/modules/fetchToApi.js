@@ -6,7 +6,7 @@ const containerCards = document.querySelector(".container-cards");
 export const fetchToApi = async (setCardNew) => {
   try {
     const response = await fetch(
-      "https://free-news.p.rapidapi.com/v1/search?q=si&country=ar&lang=es&topic=politics&search_in=summary&page_size=100",
+      "https://free-news.p.rapidapi.com/v1/search?q=si&country=ar&lang=es&search_in=summary&page_size=100",
       {
         method: "GET",
         headers: {

@@ -9,9 +9,13 @@ import { interaction_noise } from "./modules/interaction_noise.js";
 import { interaction_pixel } from "./modules/interaction_pixel.js";
 import { interaction_youtube } from "./modules/interaction_youtube.js";
 
+// in minutes
 let minutesToGetNewData = 30;
+//in seconds
+let delayTriggerPixels = 5;
 let minSecondsDelayToNewPixel = 0.1;
 let maxSecondsDelayToNewPixel = 1;
+let delayTriggerInteraction = 2;
 
 window.addEventListener("load", () => {
   ////////////  ELEMENTS  ////////////
@@ -120,7 +124,7 @@ window.addEventListener("load", () => {
       }
       //interaction_youtube(modalState, youTubeResults);
       //interaction_noise(modalState, modalCard);
-    }, 2000);
+    }, delayTriggerInteraction * 1000);
   };
   //-------------------------------------------
   //--------------------------------------------------------
@@ -133,7 +137,7 @@ window.addEventListener("load", () => {
       minSecondsDelayToNewPixel * 1000,
       maxSecondsDelayToNewPixel * 1000
     );
-  }, 5000);
+  }, delayTriggerPixels * 1000);
   //-------------------------------------------
   //--------------------------------------------------------
 
