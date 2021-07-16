@@ -34,7 +34,11 @@ export const Modal = (article) => {
                 
             </div>
 
-            <span class="modal-close"><i class="far fa-times-circle"></i></span>
+            <div class="modal-close-container">
+                
+                    <i class="far fa-times-circle"></i>
+
+            </div>
 
       </div>`;
 };

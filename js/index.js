@@ -98,7 +98,7 @@ window.addEventListener("load", () => {
       }
     });
 
-    const buttonClose = document.querySelector(".modal-close");
+    const buttonClose = document.querySelector(".modal-close-container");
     const modalCard = document.querySelector(".modal-card");
     turnOffModalButton(buttonClose, modalBG);
     setModalState(true);

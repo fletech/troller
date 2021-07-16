@@ -4,18 +4,46 @@ div.canva-noise {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../assets/Ruido.png);
-  animation: animate 0.3s steps(7) infinite;
-  filter: sepia(40%);
+  animation: infiniteLoop 0.5s steps(7) infinite;
+  filter: sepia(70%) grayscale(30%);
   display: flex;
   flex-wrap: wrap;
   z-index: 10;
-  pointer-events: none;
+  cursor: grab;
+  pointer-events: visible;
   overflow: hidden;
+  opacity: 0.95;
 }
+div.canva-noise.px-1 {
+  background: url(../assets/Ruido-1px.png);
+}
+div.canva-noise.px-1-shadow {
+  background: url(../assets/Ruido-1px-shadow.png);
+}
+div.canva-noise.px-2 {
+  background: url(../assets/Ruido-2px.png);
+}
+
+@keyframes infiniteLoop {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 400%;
+  }
+
+  100% {
+    background-position: 1000% 50%;
+  }
+}
+
+/* --------------*/
+/* Render Pixels */
+/* --------------*/
 div.canva-pixel {
-  width: 2px;
-  height: 2px;
+  width: 1px;
+  height: 1px;
 }
 
 div.canva-pixel.type1 {
@@ -37,20 +65,16 @@ div.canva-pixel.type6 {
   animation: changeColor5 0.06s linear infinite;
 }
 div.canva-pixel.type7 {
-  animation: changeColor2 0.09s linear infinite;
+  animation: changeColor4 0.09s linear infinite;
 }
 div.canva-pixel.type8 {
   animation: changeColor3 0.2s linear infinite;
 }
-
-@keyframes animate {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 100% 100%;
-  }
+div.canva-pixel.type9 {
+  animation: changeColor5 0.1s linear infinite;
+}
+div.canva-pixel.type10 {
+  animation: changeColor4 0.2s linear infinite;
 }
 
 @keyframes changeColor1 {
