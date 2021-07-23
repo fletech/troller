@@ -1,12 +1,15 @@
 div.pixels-container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
   pointer-events: none;
+  z-index: 10;
 }
 
 div.pixel {
-  position: fixed;
+  position: absolute;
   width: 15px;
   height: 15px;
   background-color: #222222;

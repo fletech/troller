@@ -1,4 +1,5 @@
 const pixelContainer = document.querySelector(".pixels-container");
+console.log(pixelContainer);
 export const interaction_pixel = () => {
   const pixelDiv = document.createElement("div");
   pixelContainer.appendChild(pixelDiv);

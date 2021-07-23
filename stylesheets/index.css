@@ -20,18 +20,22 @@ body {
   justify-content: center;
   align-items: center;
   overscroll-behavior: none;
+  height: auto;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
 main.container-cards {
   width: 100%;
   height: auto;
+  min-height: 100vh;
   display: grid;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+  position: relative;
 }
 
 /* Mobile layout */

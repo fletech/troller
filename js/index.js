@@ -116,6 +116,7 @@ window.addEventListener("load", () => {
           interaction_youtube(modalState, youTubeResults);
           break;
         case 1:
+          //interaction_youtube(modalState, youTubeResults);
           interaction_noise(modalState, modalCard);
           break;
         default:
