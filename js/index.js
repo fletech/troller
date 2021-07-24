@@ -9,13 +9,20 @@ import { interaction_noise } from "./modules/interaction_noise.js";
 import { interaction_pixel } from "./modules/interaction_pixel.js";
 import { interaction_youtube } from "./modules/interaction_youtube.js";
 
-// in minutes
-let minutesToGetNewData = 30;
-//in seconds
-let delayTriggerPixels = 5;
-let minSecondsDelayToNewPixel = 0.1;
-let maxSecondsDelayToNewPixel = 1;
-let delayTriggerInteraction = 2;
+///////////   TIME VARIABLES TO TRIGGER INTERACTIONS   //////////
+//// in minutes
+const minutesToGetNewData = 30;
+
+//// in seconds
+//Pixels
+const delayTriggerPixels = 5;
+const minSecondsDelayToNewPixel = 0.1;
+const maxSecondsDelayToNewPixel = 1;
+//Noise
+const minSecondsDelayNoise = 1;
+const maxSecondsDelayNoise = 10;
+//General
+const delayTriggerInteraction = 2;
 
 window.addEventListener("load", () => {
   ////////////  ELEMENTS  ////////////
@@ -116,13 +123,14 @@ window.addEventListener("load", () => {
           interaction_youtube(modalState, youTubeResults);
           break;
         case 1:
-          //interaction_youtube(modalState, youTubeResults);
-          setRandomInterval(
-            () => interaction_noise(modalState, modalCard),
-            1000,
-            6000
-          );
-          //interaction_noise(modalState, modalCard);
+          interaction_noise(modalState, modalCard, maxSecondsDelayNoise) &&
+            setRandomInterval(
+              () => {
+                interaction_noise(modalState, modalCard, maxSecondsDelayNoise);
+              },
+              minSecondsDelayNoise * 1000,
+              maxSecondsDelayNoise * 1000
+            );
           break;
         default:
           console.log("ni 2 ni 3");
@@ -138,11 +146,12 @@ window.addEventListener("load", () => {
   //  INTERACTION PIXELS  //
 
   setTimeout(() => {
-    setRandomInterval(
-      () => interaction_pixel(),
-      minSecondsDelayToNewPixel * 1000,
-      maxSecondsDelayToNewPixel * 1000
-    );
+    interaction_pixel() &&
+      setRandomInterval(
+        () => interaction_pixel(),
+        minSecondsDelayToNewPixel * 1000,
+        maxSecondsDelayToNewPixel * 1000
+      );
   }, delayTriggerPixels * 1000);
   //-------------------------------------------
   //--------------------------------------------------------

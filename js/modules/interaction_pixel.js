@@ -6,6 +6,6 @@ export const interaction_pixel = () => {
   pixelDiv.classList.add("pixel");
   pixelDiv.style.top = `${Math.floor(Math.random() * 100) + 1}%`;
   pixelDiv.style.left = `${Math.floor(Math.random() * 100) + 1}%`;
-
+  console.log("triggered");
   return pixelDiv;
 };

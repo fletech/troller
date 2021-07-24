@@ -25,9 +25,12 @@ const pxNoise = px._1_shadow;
 canvaNoise.classList.add("canva-noise");
 canvaNoise.classList.add(pxNoise);
 
-export const interaction_noise = (state, modal) => {
+export const interaction_noise = (state, modal, maxDelay) => {
   if (state) {
     //canvaNoise.innerHTML = DivBox(modal.offsetHeight, modal.offsetWidth);
+    canvaNoise.style = `animation: infiniteLoop 0.5s steps(7) infinite,
+    intermitent ${maxDelay}s infinite ease-in;`;
+
     modal.appendChild(canvaNoise);
     modal.classList.add("no-scroll");
     //console.log("noise");
