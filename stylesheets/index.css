@@ -46,12 +46,4 @@ main.container-cards {
   main.container-cards {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   }
-
-  div.pixel {
-    position: fixed;
-    width: 15px;
-    height: 15px;
-    background-color: #222222;
-    z-index: 10;
-  }
 }

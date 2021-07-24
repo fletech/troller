@@ -54,6 +54,10 @@ export const setRandomInterval = (intervalFunction, minDelay, maxDelay) => {
     const delay =
       Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
 
+    // console.log(
+    //   `${Math.random()} x (${maxDelay}-${minDelay}+${1})+${minDelay}`
+    // );
+
     timeout = setTimeout(timeoutFunction, delay);
   };
 

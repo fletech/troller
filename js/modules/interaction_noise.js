@@ -30,7 +30,7 @@ export const interaction_noise = (state, modal) => {
     //canvaNoise.innerHTML = DivBox(modal.offsetHeight, modal.offsetWidth);
     modal.appendChild(canvaNoise);
     modal.classList.add("no-scroll");
-    console.log("noise");
+    //console.log("noise");
   }
   // if (modal == null) {
   //   modal.removeChild(canvaNoise);
