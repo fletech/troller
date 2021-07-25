@@ -16,7 +16,7 @@ const minutesToGetNewData = 30;
 //// in seconds
 //Pixels
 const delayTriggerPixels = 5;
-const minSecondsDelayToNewPixel = 0.1;
+const minSecondsDelayToNewPixel = 0.01;
 const maxSecondsDelayToNewPixel = 1;
 //Noise
 const minSecondsDelayNoise = 1;
