@@ -44,6 +44,7 @@ export const getDate = (date) => {
 
 export const setRandomInterval = (intervalFunction, minDelay, maxDelay) => {
   let timeout;
+  intervalFunction();
 
   const runInterval = () => {
     const timeoutFunction = () => {

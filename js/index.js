@@ -123,14 +123,13 @@ window.addEventListener("load", () => {
           interaction_youtube(modalState, youTubeResults);
           break;
         case 1:
-          interaction_noise(modalState, modalCard, maxSecondsDelayNoise) &&
-            setRandomInterval(
-              () => {
-                interaction_noise(modalState, modalCard, maxSecondsDelayNoise);
-              },
-              minSecondsDelayNoise * 1000,
-              maxSecondsDelayNoise * 1000
-            );
+          setRandomInterval(
+            () => {
+              interaction_noise(modalState, modalCard, maxSecondsDelayNoise);
+            },
+            minSecondsDelayNoise * 1000,
+            maxSecondsDelayNoise * 1000
+          );
           break;
         default:
           console.log("ni 2 ni 3");
