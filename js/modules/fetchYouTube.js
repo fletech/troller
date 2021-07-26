@@ -13,7 +13,7 @@ export const fetchYouTube = async (query) => {
       }
     );
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
 
     return data.items;
   } catch (error) {
